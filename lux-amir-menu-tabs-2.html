@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رستوران لوکس امیر | منو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char: #1C1613;
+    --char-2: #241A15;
+    --ember: #C1440E;
+    --ember-soft: #E06A2E;
+    --brass: #B08D57;
+    --parchment: #F1E9DA;
+    --parchment-2: #E7DAC2;
+    --clay: #5C2418;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--parchment);
+    color: var(--char);
+    font-family:'Vazirmatn', sans-serif;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background: radial-gradient(120% 140% at 50% -20%, #382318 0%, var(--char) 55%, var(--char) 100%);
+    color: var(--parchment);
+    padding: 3.6rem 1.4rem 3rem;
+    text-align:center;
+    overflow:hidden;
+  }
+  .embers{ position:absolute; inset:0; z-index:0; opacity:.55; }
+  .embers span{
+    position:absolute; bottom:-10px; width:5px; height:5px; border-radius:50%;
+    background: var(--ember-soft);
+    box-shadow: 0 0 8px 2px rgba(224,106,46,.8);
+    animation: rise 6s ease-in infinite;
+  }
+  @keyframes rise{
+    0%{ transform: translateY(0) scale(1); opacity:0; }
+    15%{ opacity:1; }
+    100%{ transform: translateY(-260px) scale(.3); opacity:0; }
+  }
+  .hero-inner{ position:relative; z-index:2; }
+  .eyebrow{
+    font-size:.78rem; letter-spacing:.4em; color: var(--brass);
+    text-transform:uppercase; margin-bottom:1rem; font-weight:600;
+  }
+  .hero h1{
+    font-family:'Vazirmatn', sans-serif;
+    font-size: clamp(2.6rem, 10vw, 4.2rem);
+    font-weight:700; line-height:1.1;
+    color: var(--parchment);
+    text-shadow: 0 0 26px rgba(193,68,14,.35);
+  }
+  .hero p.tag{ font-size:.98rem; color: rgba(241,233,218,.75); margin-top:.8rem; }
+  .phones{ margin-top: 1.4rem; display:flex; justify-content:center; gap:.7rem; flex-wrap:wrap; font-size:.85rem; }
+  .phones a{
+    color: var(--parchment); text-decoration:none;
+    background: rgba(176,141,87,.16);
+    border: 1px solid rgba(176,141,87,.5);
+    padding: .5rem 1rem; border-radius: 999px;
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  /* ---------- Category tabs (sticky) ---------- */
+  .nav-wrap{
+    position: sticky; top:0; z-index: 20;
+    background: var(--char);
+    padding: 0 .8rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  }
+  .nav-scroll{
+    display:flex; gap: .5rem; overflow-x:auto; padding: .8rem .2rem;
+    scrollbar-width:none;
+  }
+  .nav-scroll::-webkit-scrollbar{ display:none; }
+  .tab{
+    position:relative;
+    flex: 0 0 auto;
+    font-family:'Vazirmatn', sans-serif;
+    font-weight:600; font-size:.9rem;
+    color: rgba(241,233,218,.8);
+    background: rgba(176,141,87,.12);
+    border: 1px solid rgba(176,141,87,.3);
+    cursor:pointer;
+    padding: .6rem 1.2rem;
+    border-radius: 999px;
+    transition: color .25s ease, background .25s ease, border-color .25s ease;
+    white-space:nowrap;
+  }
+  .tab.active{
+    color: var(--char);
+    background: var(--ember-soft);
+    border-color: var(--ember-soft);
+    font-weight:700;
+  }
+
+  /* ---------- Body ---------- */
+  main{ max-width: 620px; margin: 0 auto; padding: 2.2rem 1.3rem 4.5rem; }
+
+  .category{ scroll-margin-top: 4.6rem; }
+  .category + .category{ margin-top: 2.6rem; }
+  @keyframes flash{
+    0%{ background: rgba(224,106,46,.18); }
+    100%{ background: transparent; }
+  }
+  .category.flash .list{ animation: flash 1s ease; }
+
+  .cat-title{
+    text-align:center;
+    font-size: 1.5rem;
+    font-weight:800;
+    color: var(--clay);
+    margin-bottom: .4rem;
+  }
+  .cat-note{
+    text-align:center;
+    color: rgba(28,22,19,.55);
+    font-size: .85rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .skewer{ display:flex; align-items:center; gap: 6px; margin: 0 auto 1.6rem; max-width:220px; }
+  .skewer::before, .skewer::after{ content:""; flex:1; height:2px; background: var(--brass); opacity:.55; }
+  .skewer .bead{ width:9px; height:9px; background: var(--ember); transform: rotate(45deg); }
+  .skewer .bead:nth-child(3){ width:13px; height:13px; background: var(--brass); }
+
+  .list{
+    background: var(--parchment-2);
+    border-radius: 14px;
+    overflow:hidden;
+    border: 1px solid rgba(92,36,24,.12);
+  }
+  .row{
+    display:flex; justify-content:space-between; align-items:center; gap: 1rem;
+    padding: 1rem 1.1rem;
+    border-bottom: 1px dashed rgba(92,36,24,.2);
+  }
+  .row:last-child{ border-bottom:none; }
+  .row-name{ font-family:'Vazirmatn', sans-serif; font-size: 1.15rem; font-weight:700; color: var(--char); }
+  .row-name small{
+    display:block; font-family:'Vazirmatn', sans-serif; font-weight:400;
+    font-size:.74rem; color: rgba(28,22,19,.55); margin-top:.2rem;
+  }
+  .row-price{ white-space:nowrap; font-weight:800; color: var(--ember); font-size: 1rem; }
+  .row-price sub{ font-size:.6rem; color: rgba(28,22,19,.5); font-weight:500; margin-inline-start:.2rem; }
+
+  footer{
+    text-align:center;
+    padding: 2.2rem 1.5rem 2.8rem;
+    background: var(--char);
+    color: rgba(241,233,218,.7);
+    font-size:.82rem;
+    line-height:2.1;
+  }
+  footer .fname{ font-family:'Vazirmatn', sans-serif; font-size:1.3rem; color: var(--brass); margin-bottom:.3rem; }
+  footer a{ color: var(--brass); text-decoration:none; }
+
+  @media (prefers-reduced-motion: reduce){ .embers span{ animation:none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="embers" id="embers"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">کبابی سنتی</div>
+    <h1>لوکس امیر</h1>
+    <p class="tag">روی ذغال، به‌همان روش همیشگی</p>
+    <div class="phones">
+      <a href="tel:02155358085">021-55358085</a>
+      <a href="tel:02155358084">021-55358084</a>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-scroll" id="navScroll">
+    <button class="tab active" data-cat="mains"><span>چلوکباب و غذای اصلی</span></button>
+    <button class="tab" data-cat="dorchin"><span>خوراک دورچین</span></button>
+    <button class="tab" data-cat="starters"><span>پیش‌غذا و مخلفات</span></button>
+    <button class="tab" data-cat="drinks"><span>نوشیدنی</span></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="category" id="mains">
+    <h2 class="cat-title">چلوکباب و غذای اصلی</h2>
+    <p class="cat-note">همراه با برنج ایرانی و گوجه کبابی</p>
+    <div class="skewer"><div class="bead"></div><div class="bead"></div><div class="bead"></div><div class="bead"></div></div>
+    <div class="list">
+      <div class="row"><div class="row-name">چلوگردن گوسفندی</div><div class="row-price">۱٬۰۰۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب سلطانی</div><div class="row-price">۸۵۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب شاهانه<small>جوجه و برگ</small></div><div class="row-price">۷۳۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو برگ مخصوص</div><div class="row-price">۷۰۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب وزیری<small>جوجه و کوبیده</small></div><div class="row-price">۵۹۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب نگین</div><div class="row-price">۵۸۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو ماهی قزل‌آلا</div><div class="row-price">۵۷۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب بختیاری</div><div class="row-price">۵۵۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">اکبر جوجه چلو</div><div class="row-price">۵۰۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب کوبیده<small>دو سیخ</small></div><div class="row-price">۴۷۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو کباب لقمه زعفرانی</div><div class="row-price">۴۴۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو جوجه کباب مخصوص</div><div class="row-price">۴۳۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">زرشک چلو با مرغ</div><div class="row-price">۴۲۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو خورشت قیمه</div><div class="row-price">۳۸۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">چلو خورشت قورمه سبزی</div><div class="row-price">۳۸۰<sub>هزار تومان</sub></div></div>
+    </div>
+  </section>
+
+  <section class="category" id="dorchin">
+    <h2 class="cat-title">خوراک دورچین</h2>
+    <p class="cat-note">بدون برنج، فقط کباب و مخلفات</p>
+    <div class="skewer"><div class="bead"></div><div class="bead"></div><div class="bead"></div><div class="bead"></div></div>
+    <div class="list">
+      <div class="row"><div class="row-name">خوراک ماهی دورچین</div><div class="row-price">۴۵۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">خوراک کوبیده دورچین</div><div class="row-price">۳۷۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">خوراک جوجه دورچین</div><div class="row-price">۳۵۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">خوراک لقمه دورچین</div><div class="row-price">۳۵۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">خوراک مرغ دورچین</div><div class="row-price">۳۵۰<sub>هزار تومان</sub></div></div>
+    </div>
+  </section>
+
+  <section class="category" id="starters">
+    <h2 class="cat-title">پیش‌غذا و مخلفات</h2>
+    <div class="skewer"><div class="bead"></div><div class="bead"></div><div class="bead"></div><div class="bead"></div></div>
+    <div class="list">
+      <div class="row"><div class="row-name">سالاد فصل</div><div class="row-price">۹۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">ماست و خیار</div><div class="row-price">۹۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">زیتون</div><div class="row-price">۴۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">ماست موسیر</div><div class="row-price">۳۵<sub>هزار تومان</sub></div></div>
+    </div>
+  </section>
+
+  <section class="category" id="drinks">
+    <h2 class="cat-title">نوشیدنی</h2>
+    <div class="skewer"><div class="bead"></div><div class="bead"></div><div class="bead"></div><div class="bead"></div></div>
+    <div class="list">
+      <div class="row"><div class="row-name">نوشابه خانواده با لیوان</div><div class="row-price">۱۱۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">دوغ خانواده با لیوان</div><div class="row-price">۱۰۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">نوشابه قوطی</div><div class="row-price">۶۵<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">دلستر قوطی</div><div class="row-price">۶۵<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">نوشابه بطری</div><div class="row-price">۴۰<sub>هزار تومان</sub></div></div>
+      <div class="row"><div class="row-name">دوغ تک‌نفره</div><div class="row-price">۴۰<sub>هزار تومان</sub></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fname">لوکس امیر</div>
+  <div>برای رزرو تماس بگیرید: <a href="tel:02155358085" style="direction:ltr; unicode-bidi:isolate;">021-55358085</a> &nbsp;/&nbsp; <a href="tel:02155358084" style="direction:ltr; unicode-bidi:isolate;">021-55358084</a></div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const cats = document.querySelectorAll('.category');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      tab.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+
+      const target = document.getElementById(tab.dataset.cat);
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+      target.classList.remove('flash');
+      void target.offsetWidth; // restart animation
+      target.classList.add('flash');
+    });
+  });
+
+  // Highlight the tab matching whichever section is in view while scrolling
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.cat === entry.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  cats.forEach(c => observer.observe(c));
+
+  const container = document.getElementById('embers');
+  for(let i=0;i<14;i++){
+    const s = document.createElement('span');
+    s.style.left = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*6) + 's';
+    s.style.animationDuration = (4.5 + Math.random()*3) + 's';
+    container.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
